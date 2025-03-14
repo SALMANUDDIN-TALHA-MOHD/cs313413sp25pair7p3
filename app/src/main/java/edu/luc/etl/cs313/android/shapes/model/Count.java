@@ -6,45 +6,55 @@ package edu.luc.etl.cs313.android.shapes.model;
  */
 public class Count implements Visitor<Integer> {
 
-    // TODO entirely your job
-
     @Override
     public Integer onPolygon(final Polygon p) {
-        return -1;
+        // Polygon is one basic shape
+        return 1;
     }
 
     @Override
     public Integer onCircle(final Circle c) {
-        return -1;
+        // Circle is one basic shape
+        return 1;
     }
 
     @Override
     public Integer onGroup(final Group g) {
-        return -1;
+        // Sum up the count of all shapes in the group
+        int result = 0;
+        for (Shape s : g.getShapes()) {
+            result += s.accept(this);
+        }
+        return result;
     }
 
     @Override
     public Integer onRectangle(final Rectangle q) {
-        return -1;
+        // Rectangle is one basic shape
+        return 1;
     }
 
     @Override
     public Integer onOutline(final Outline o) {
-        return -1;
+        // Outline is a decorator, so delegate to the decorated shape
+        return o.getShape().accept(this);
     }
 
     @Override
     public Integer onFill(final Fill c) {
-        return -1;
+        // Fill is a decorator, so delegate to the decorated shape
+        return c.getShape().accept(this);
     }
 
     @Override
     public Integer onLocation(final Location l) {
-        return -1;
+        // Location is a decorator, so delegate to the decorated shape
+        return l.getShape().accept(this);
     }
 
     @Override
     public Integer onStrokeColor(final StrokeColor c) {
-        return -1;
+        // StrokeColor is a decorator, so delegate to the decorated shape
+        return c.getShape().accept(this);
     }
 }
