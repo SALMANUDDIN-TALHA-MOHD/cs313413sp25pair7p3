@@ -35,6 +35,7 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    namespace 'edu.luc.etl.cs313.android.shapes.android'
 }
 
 dependencies {
